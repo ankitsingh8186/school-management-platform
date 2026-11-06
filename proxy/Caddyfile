@@ -1,0 +1,19 @@
+{
+	# HTTPS only on the mapped port; no HTTP->HTTPS redirect (host port differs from 443)
+	auto_https disable_redirects
+}
+
+{$SITE_ADDRESS:localhost} {
+	tls internal
+	encode gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+	log {
+		output stdout
+		format json
+	}
+	reverse_proxy app:8000
+}
