@@ -57,7 +57,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Container vulnerability scan (Trivy)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: ${{ steps.meta.outputs.repo }}:${{ steps.meta.outputs.sha }}
           severity: CRITICAL
